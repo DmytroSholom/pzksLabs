@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sholom.pzks.lab.controller.AppController">
+    <children>
+        <BorderPane prefHeight="662.0" prefWidth="827.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <MenuBar BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#create" text="Create new..." />
+                                <MenuItem mnemonicParsing="false" onAction="#save" text="Save ..." />
+                                <MenuItem mnemonicParsing="false" onAction="#open" text="Open ..." />
+                            </items>
+                        </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Draw" onAction="#editingMode"/>
+                        <MenuItem mnemonicParsing="false" text="Pick" onAction="#pickingMode"/>
+                        <MenuItem mnemonicParsing="false" text="Transform" onAction="#transformingMode"/>
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Scheduling">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Stats" onAction="#stats"/>
+                        <MenuItem mnemonicParsing="false" text="Variant 1" onAction="#taskOne"/>
+                        <MenuItem mnemonicParsing="false" text="Variant 12" onAction="#taskTwelve"/>
+                        <MenuItem mnemonicParsing="false" text="Variant 16" onAction="#taskSixteen"/>
+                    </items>
+                  </Menu>
+                    </menus>
+                </MenuBar>
+            </top>
+            <bottom>
+                <TabPane fx:id="mainTabPane" prefHeight="593.0" prefWidth="827.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab text="Task graph">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="672.0" prefWidth="923.0">
+                                    <children>
+                                        <SwingNode fx:id="taskGraphVisualizer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="SystemGraph">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <SwingNode fx:id="systemGraphVisualizer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </bottom>
+            <center>
+                <ToolBar prefHeight="20.0" prefWidth="827.0" BorderPane.alignment="CENTER">
+                    <items>
+                        <Button mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="35.0">
+                            <graphic>
+                                <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/New%20File.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                  <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="35.0">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/autosave.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                        <Button mnemonicParsing="false" onAction="#open" prefHeight="25.0" prefWidth="35.0">
+                            <graphic>
+                                <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/115.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Separator orientation="VERTICAL" prefHeight="34.0" prefWidth="8.0" />
+                        <ToggleButton mnemonicParsing="false" onAction="#staticLayout" prefHeight="34.0" prefWidth="41.0" selected="true">
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/layout_edit-512.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <toggleGroup>
+                                <ToggleGroup fx:id="layoutGroup" />
+                            </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton mnemonicParsing="false" onAction="#circleLayout" prefHeight="34.0" prefWidth="41.0" toggleGroup="$layoutGroup">
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/circle-256.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </ToggleButton>
+                        <ToggleButton mnemonicParsing="false" onAction="#ISOMLayout" prefHeight="34.0" prefWidth="41.0" toggleGroup="$layoutGroup">
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/icon-rnd-weighted-hub-and-spokes.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </ToggleButton>
+                        <ToggleButton mnemonicParsing="false" onAction="#FRLayout" prefHeight="34.0" prefWidth="41.0" toggleGroup="$layoutGroup">
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/bold-layout-19-512.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </ToggleButton>
+                        <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" />
+                        <Button fx:id="generateBtn" mnemonicParsing="false" onAction="#generateGraph" prefHeight="25.0" prefWidth="35.0">
+                            <graphic>
+                                <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/generate_invoice.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#checkGraph" prefHeight="25.0" prefWidth="35.0">
+                            <graphic>
+                                <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/heavy_check_mark_u2714_icon_256x256.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" />
+                  <Button mnemonicParsing="false" onAction="#stats" prefHeight="25.0" prefWidth="35.0" fx:id="statsBtn">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Misc-Stats-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#taskOne" prefHeight="25.0" prefWidth="35.0" fx:id="taskOneBtn">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/1-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#taskTwelve" prefHeight="25.0" prefWidth="35.0" fx:id="taskTwelveBtn">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/12.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#taskSixteen" prefHeight="25.0" prefWidth="35.0" fx:id="taskSixteenBtn">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/120px-16_icon_AE_(Hungary).svg.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" />
+                  <Button mnemonicParsing="false"  prefHeight="25.0" prefWidth="35.0" disable="true">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/tumblr_static_edit_logo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                    </items>
+                </ToolBar>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
